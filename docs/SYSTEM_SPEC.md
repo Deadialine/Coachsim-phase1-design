@@ -1,14 +1,14 @@
-Over a continuous 5-minute I²C stability test on the shared bus, the system consistently detected exactly two devices—  DS1307 at 0x68   (fixed address) and   MPU-6050 at 0x69  —across   300 scans  , with   zero intermittent dropouts   (Ever missing 0x68:   NO  , Ever missing 0x69:   NO  ), therefore the bus configuration and address conflict mitigation are verified as stable; the MPU-6050 address selection was achieved by tying   AD0 HIGH to 3.3V   while keeping both modules on the same SDA/SCL lines with a common ground.
+Over a continuous 5-minute I²C stability test on the shared bus, the system consistently detected exactly two devices—  DS1307 at 0x68   (fixed address) and   MPU-6050 at 0x69  —across   300 scans  , with   zero intermittent dropouts   (Ever missing 0x68:   NO  , Ever missing 0x69:   NO  ), therefore the bus configuration and address conflict mitigation are verified as stable  the MPU-6050 address selection was achieved by tying   AD0 HIGH to 3.3V   while keeping both modules on the same SDA/SCL lines with a common ground.
 
 | Item | Device / Module   | I²C Address | How address is achieved                                 | I²C Bus Connections              | Power / Ground                            | Verification evidence                 | Status |
 | ---- | ----------------- | ----------: | ------------------------------------------------------- | -------------------------------- | ----------------------------------------- | ------------------------------------- | ------ |
-| 1    | DS1307 RTC v03    |        0x68 | Fixed (non-configurable)                                | SDA + SCL shared on the same bus | VCC powered, GND common with MCU + MPU    | 300 scans / 5 min; never missing 0x68 | PASS   |
-| 2    | GY-521 (MPU-6050) |        0x69 |   AD0 tied HIGH to 3.3V   (forces 0x69 instead of 0x68) | SDA + SCL shared on the same bus | VCC powered, GND common with MCU + DS1307 | 300 scans / 5 min; never missing 0x69 | PASS   |
+| 1    | DS1307 RTC v03    |        0x68 | Fixed (non-configurable)                                | SDA + SCL shared on the same bus | VCC powered, GND common with MCU + MPU    | 300 scans / 5 min  never missing 0x68 | PASS   |
+| 2    | GY-521 (MPU-6050) |        0x69 |   AD0 tied HIGH to 3.3V   (forces 0x69 instead of 0x68) | SDA + SCL shared on the same bus | VCC powered, GND common with MCU + DS1307 | 300 scans / 5 min  never missing 0x69 | PASS   |
 
 
 
 
-  I²C electrical targets (measured, power OFF, Mega2560 bus on D20/D21): Effective pull-ups are to   5V   (not 3.3V). Measured resistance   SDA→5V = 10.08 kΩ  ,   SCL→5V = 10.1 kΩ  ; leakage/parallel paths to 3.3V are effectively open (  SDA→3.3V = 1.56 MΩ  ,   SCL→3.3V = 1.4 MΩ  ), indicating no meaningful 3.3V pull-ups present.   Bus speed validation:   at   100 kHz  , the shared bus with   DS1307 @ 0x68   and   MPU-6050 @ 0x69 (AD0 tied HIGH to 3.3V)   remained stable for   5 minutes / 300 scans   with   zero dropouts   (Ever missing 0x68: NO; Ever missing 0x69: NO) →   PASS  .
+  I²C electrical targets (measured, power OFF, Mega2560 bus on D20/D21): Effective pull-ups are to   5V   (not 3.3V). Measured resistance   SDA→5V = 10.08 kΩ  ,   SCL→5V = 10.1 kΩ    leakage/parallel paths to 3.3V are effectively open (  SDA→3.3V = 1.56 MΩ  ,   SCL→3.3V = 1.4 MΩ  ), indicating no meaningful 3.3V pull-ups present.   Bus speed validation:   at   100 kHz  , the shared bus with   DS1307 @ 0x68   and   MPU-6050 @ 0x69 (AD0 tied HIGH to 3.3V)   remained stable for   5 minutes / 300 scans   with   zero dropouts   (Ever missing 0x68: NO  Ever missing 0x69: NO) →   PASS  .
 
 | Parameter                            |   SDA (D20) |   SCL (D21) | Notes                                           |
 | ------------------------------------ | ----------: | ----------: | ----------------------------------------------- |
@@ -16,16 +16,16 @@ Over a continuous 5-minute I²C stability test on the shared bus, the system con
 | Pull-up / leakage to 3.3V (measured) |     1.56 MΩ |      1.4 MΩ | No meaningful 3.3V pull-ups present             |
 | I²C bus speed verified               |     100 kHz |     100 kHz | Wire.setClock(100000)                           |
 | Stability test duration / scans      | 5 min / 300 | 5 min / 300 | 1 scan/sec                                      |
-| Expected devices present every scan  |  0x68, 0x69 |  0x68, 0x69 | DS1307 fixed @0x68; MPU-6050 @0x69 via AD0=3.3V |
-| Result                               |        PASS |        PASS | Ever missing 0x68: NO; Ever missing 0x69: NO    |
+| Expected devices present every scan  |  0x68, 0x69 |  0x68, 0x69 | DS1307 fixed @0x68  MPU-6050 @0x69 via AD0=3.3V |
+| Result                               |        PASS |        PASS | Ever missing 0x68: NO  Ever missing 0x69: NO    |
 
 
 
-Timebase verification was executed on the ESP32 at   I²C = 100 kHz   using a frame loop that captures   monotonic `t_us` exactly once at frame start   via `esp_timer_get_time()` and forbids time calls inside drivers; across   5929 frames  , the monotonicity acceptance criteria were met with   0 non-increasing violations  , and the observed inter-frame delta remained strictly positive with   min_dt_us = 10104 µs   and   max_dt_us = 11228 µs  , confirming no backward jumps and no negative `dt` during the test (OVERALL:   PASS  ).
+Timebase verification was executed on the ESP32 at   I²C = 100 kHz   using a frame loop that captures   monotonic `t_us` exactly once at frame start   via `esp_timer_get_time()` and forbids time calls inside drivers  across   5929 frames  , the monotonicity acceptance criteria were met with   0 non-increasing violations  , and the observed inter-frame delta remained strictly positive with   min_dt_us = 10104 µs   and   max_dt_us = 11228 µs  , confirming no backward jumps and no negative `dt` during the test (OVERALL:   PASS  ).
 
 | Test                            | Configuration                                                                                                                 |     Samples | Acceptance checks                                             | Result evidence                                                                        | Status |
 | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------: | ------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------ |
-| 3.1 Monotonic timebase (`t_us`) | ESP32 `esp_timer_get_time()`, captured   once per frame at frame start  ; drivers do   not   call time; bus speed   100 kHz   | 5929 frames | `t_us` strictly increasing; no negative `dt` / backward jumps | Violations:   0  ; `min_dt_us`   10104 µs  ; `max_dt_us`   11228 µs  ; final:   PASS   | PASS   |
+| 3.1 Monotonic timebase (`t_us`) | ESP32 `esp_timer_get_time()`, captured   once per frame at frame start    drivers do   not   call time  bus speed   100 kHz   | 5929 frames | `t_us` strictly increasing  no negative `dt` / backward jumps | Violations:   0    `min_dt_us`   10104 µs    `max_dt_us`   11228 µs    final:   PASS   | PASS   |
 
 
 
@@ -43,14 +43,14 @@ Phase 1 logging format is CSV. Firmware MUST write the header line exactly once 
 | `gx_dps`         | `float`  | deg/s | MPU gyro X                                                     | IMU               | if sensor absent/unread: `0`           |
 | `gy_dps`         | `float`  | deg/s | MPU gyro Y                                                     | IMU               | if sensor absent/unread: `0`           |
 | `gz_dps`         | `float`  | deg/s | MPU gyro Z                                                     | IMU               | if sensor absent/unread: `0`           |
-| `emg_uV`         | `float`  |    µV | EMG channel (future)                                           | reserved          | **reserved; zero until implemented**   |
-| `fsr_N`          | `float`  |     N | Force/pressure (future)                                        | reserved          | **reserved; zero until implemented**   |
-| `strain_uE`      | `float`  |    µε | Strain (future)                                                | reserved          | **reserved; zero until implemented**   |
-| `resp_raw`       | `float`  |     — | Respiration raw (future)                                       | reserved          | **reserved; zero until implemented**   |
-| `reserved0`      | `float`  |     — | Extra reserved channel                                         | reserved          | **reserved; zero until implemented**   |
-| `reserved1`      | `float`  |     — | Extra reserved channel                                         | reserved          | **reserved; zero until implemented**   |
+| `emg_uV`         | `float`  |    µV | EMG channel (future)                                           | reserved          |   reserved  zero until implemented     |
+| `fsr_N`          | `float`  |     N | Force/pressure (future)                                        | reserved          |   reserved  zero until implemented     |
+| `strain_uE`      | `float`  |    µε | Strain (future)                                                | reserved          |   reserved  zero until implemented     |
+| `resp_raw`       | `float`  |     — | Respiration raw (future)                                       | reserved          |   reserved  zero until implemented     |
+| `reserved0`      | `float`  |     — | Extra reserved channel                                         | reserved          |   reserved  zero until implemented     |
+| `reserved1`      | `float`  |     — | Extra reserved channel                                         | reserved          |   reserved  zero until implemented     |
 Reserved fields policy (must not break tooling):
-All reserved channels are always present in the CSV header and always emitted for every frame, but may be zero-filled (or blank if explicitly allowed by tooling; default is zero) until the sensor/channel is implemented. Adding future sensors MUST NOT add/remove/reorder CSV columns; the firmware only starts populating existing reserved columns.
+All reserved channels are always present in the CSV header and always emitted for every frame, but may be zero-filled (or blank if explicitly allowed by tooling  default is zero) until the sensor/channel is implemented. Adding future sensors MUST NOT add/remove/reorder CSV columns  the firmware only starts populating existing reserved columns.
 # Non-increasing t_us violations: 0
 # ===== FINAL RESULT =====
 # OVERALL: PASS (header emitted + columns fixed + reserved present + monotonic t_us)
@@ -62,6 +62,19 @@ All reserved channels are always present in the CSV header and always emitted fo
 
 
 
+Sampling + scheduler validation at the Phase 1 target (  100 Hz IMU  ,   1 Hz RTC health  ,   I²C = 100 kHz  ) showed that the loop timing was stable in terms of jitter but failed the achieved-rate requirement: over the 5-minute run the firmware wrote   27,500 frames   with   2,499 dropped frames   and   0 cumulative I²C errors  , with   final `rtc_health = OK`    the measured inter-frame timing was tight (  min_dt_us = 10,428 µs  ,   max_dt_us = 11,148 µs  , jitter span   720 µs   < 5 ms PASS), but the achieved rate was only   91.665 Hz   (  −8.33%   vs 100 Hz, outside the ±2% acceptance), therefore the current pacing/scheduler implementation is not meeting the 100 Hz rate target and must be corrected before Phase 1 can be considered complete.
+
+| Metric                    | Target / Acceptance                    |               Measured | Pass/Fail                            |
+| ------------------------- | -------------------------------------- | ---------------------: | ------------------------------------ |
+| I²C bus speed             | 100 kHz (Phase 1 baseline)             |             100,000 Hz | —                                    |
+| IMU target rate           | 100 Hz                                 |              91.665 Hz |   FAIL   (−8.33% vs ±2%)             |
+| Frames written (5 min)    | ~30,000 expected                       |                 27,500 | —                                    |
+| Dropped frames            | 0 preferred  tracked                   |                  2,499 |   FAIL   (indicates missed schedule) |
+| I²C errors (cumulative)   | 0 preferred                            |                      0 | PASS                                 |
+| RTC health check          | 1 Hz  health tracked                   |                     OK | PASS                                 |
+| Jitter bound              | (max_dt − min_dt) < 5 ms               |                 720 µs | PASS                                 |
+| `min_dt_us` / `max_dt_us` | Informational                          |     10,428 / 11,148 µs | PASS (positive dt)                   |
+| Overall                   | Rate within ±2% AND jitter span < 5 ms | Rate FAIL, Jitter PASS |   OVERALL: FAIL                      |
 
 
 
