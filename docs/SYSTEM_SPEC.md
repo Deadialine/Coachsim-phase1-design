@@ -43,10 +43,10 @@ Phase 1 logging format is CSV. Firmware MUST write the header line exactly once 
 | `gx_dps`         | `float`  | deg/s | MPU gyro X                                                     | IMU               | if sensor absent/unread: `0`           |
 | `gy_dps`         | `float`  | deg/s | MPU gyro Y                                                     | IMU               | if sensor absent/unread: `0`           |
 | `gz_dps`         | `float`  | deg/s | MPU gyro Z                                                     | IMU               | if sensor absent/unread: `0`           |
-| `emg_uV`         | `float`  |    µV | EMG channel (future)                                           | reserved          |   reserved  zero until implemented     |
-| `fsr_N`          | `float`  |     N | Force/pressure (future)                                        | reserved          |   reserved  zero until implemented     |
-| `strain_uE`      | `float`  |    µε | Strain (future)                                                | reserved          |   reserved  zero until implemented     |
-| `resp_raw`       | `float`  |     — | Respiration raw (future)                                       | reserved          |   reserved  zero until implemented     |
+| `emg_uV`         | `float`  |    µV | EMG channel                                                    | reserved          |   reserved  zero until implemented     |
+| `fsr_N`          | `float`  |     N | Force/pressure                                                 | reserved          |   reserved  zero until implemented     |
+| `strain_uE`      | `float`  |    µε | Strain                                                         | reserved          |   reserved  zero until implemented     |
+| `resp_raw`       | `float`  |     — | Respiration raw                                                | reserved          |   reserved  zero until implemented     |
 | `reserved0`      | `float`  |     — | Extra reserved channel                                         | reserved          |   reserved  zero until implemented     |
 | `reserved1`      | `float`  |     — | Extra reserved channel                                         | reserved          |   reserved  zero until implemented     |
 Reserved fields policy (must not break tooling):
@@ -75,6 +75,7 @@ Sampling + scheduler validation at the Phase 1 target (  100 Hz IMU  ,   1 Hz RT
 | Jitter bound              | (max_dt − min_dt) < 5 ms               |                 720 µs | PASS                                 |
 | `min_dt_us` / `max_dt_us` | Informational                          |     10,428 / 11,148 µs | PASS (positive dt)                   |
 | Overall                   | Rate within ±2% AND jitter span < 5 ms | Rate FAIL, Jitter PASS |   OVERALL: FAIL                      |
+
 
 
 
