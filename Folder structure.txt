@@ -1,0 +1,9 @@
+docs/SYSTEM_SPEC.md
+
+firmware/include/{pinmap.h,schema.h}
+
+firmware/src/{main.cpp,acq_task.cpp,logger.cpp}
+
+firmware/src/drivers/{mpu6050.cpp,ds1307.cpp}
+
+tools/{parse_log.py,plot_timing.py}
