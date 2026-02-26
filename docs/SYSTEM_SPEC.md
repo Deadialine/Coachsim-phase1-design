@@ -50,12 +50,13 @@ Phase 1 logging format is CSV. Firmware MUST write the header line exactly once 
 | `reserved0`      | `float`  |     — | Extra reserved channel                                         | reserved          |   reserved  zero until implemented     |
 | `reserved1`      | `float`  |     — | Extra reserved channel                                         | reserved          |   reserved  zero until implemented     |
 
+
+
+
 Reserved fields policy (must not break tooling):
 All reserved channels are always present in the CSV header and always emitted for every frame, but may be zero-filled (or blank if explicitly allowed by tooling  default is zero) until the sensor/channel is implemented. Adding future sensors MUST NOT add/remove/reorder CSV columns  the firmware only starts populating existing reserved columns.
  Non-increasing t_us violations: 0
-===== FINAL RESULT =====
- OVERALL: PASS (header emitted + columns fixed + reserved present + monotonic t_us)
- ========================
+ FINAL RESULT OVERALL: PASS (header emitted + columns fixed + reserved present + monotonic t_us)
 
 
 
@@ -76,6 +77,7 @@ Sampling + scheduler validation at the Phase 1 target (  100 Hz IMU  ,   1 Hz RT
 | Jitter bound              | (max_dt − min_dt) < 5 ms               |                 720 µs | PASS                                 |
 | `min_dt_us` / `max_dt_us` | Informational                          |     10,428 / 11,148 µs | PASS (positive dt)                   |
 | Overall                   | Rate within ±2% AND jitter span < 5 ms | Rate FAIL, Jitter PASS |   OVERALL: FAIL                      |
+
 
 
 
