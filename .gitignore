@@ -27,3 +27,4 @@ node_modules/
 # OneDrive / Office temp files
 ~$*
 *.tmp
+evidence/generated/

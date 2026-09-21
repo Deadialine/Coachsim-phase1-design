@@ -1,0 +1,106 @@
+{
+  "provenance": "synthetic",
+  "duration_seconds": 60,
+  "channel_count": 1,
+  "hardware_verified": false,
+  "transport_packet_loss": "not measured; sample gaps assessed separately",
+  "latency": "25 ms injected test value; end-to-end latency not measured",
+  "emg": {
+    "samples": 120000,
+    "expected_samples": 120000,
+    "missing_samples": 0,
+    "missing_fraction": 0.0,
+    "internal_sequence_gaps": 0,
+    "first_index": 0,
+    "last_index": 119999,
+    "first_t_us": 0,
+    "last_t_us": 59999500,
+    "received_hz": 2000.0,
+    "clock_hz": 2000.0,
+    "min_dt_us": 500,
+    "max_dt_us": 500,
+    "normalized_period_median_us": 500.0,
+    "nonmonotonic": 0,
+    "invalid": 0,
+    "flagged_rows": 0,
+    "channels": [
+      {
+        "channel": 1,
+        "mean_adc": 2047.99,
+        "ac_rms_adc": 103.64086983424961,
+        "still_ac_rms_adc": 9.71699542039233,
+        "motion_ac_rms_adc": 146.24787041184462,
+        "motion_to_still_db": 23.55115105548677,
+        "clipped_fraction": 0.0
+      }
+    ],
+    "checks": {
+      "nonempty": true,
+      "time_and_sequence_monotonic": true,
+      "valid_values_and_bounds": true,
+      "received_rate_within_1pct": true,
+      "clock_rate_within_1pct": true,
+      "missing_below_0_5pct": true,
+      "clipping_each_channel_below_1pct": true
+    },
+    "pass_all": true
+  },
+  "imu": {
+    "samples": 6000,
+    "expected_samples": 6000,
+    "missing_samples": 0,
+    "missing_fraction": 0.0,
+    "internal_sequence_gaps": 0,
+    "first_index": 0,
+    "last_index": 5999,
+    "first_t_us": 0,
+    "last_t_us": 59990000,
+    "received_hz": 100.0,
+    "clock_hz": 100.0,
+    "min_dt_us": 10000,
+    "max_dt_us": 10000,
+    "normalized_period_median_us": 10000.0,
+    "nonmonotonic": 0,
+    "invalid": 0,
+    "flagged_rows": 0,
+    "channels": [],
+    "checks": {
+      "nonempty": true,
+      "time_and_sequence_monotonic": true,
+      "valid_values_and_bounds": true,
+      "received_rate_within_1pct": true,
+      "clock_rate_within_1pct": true,
+      "missing_below_0_5pct": true,
+      "clipping_each_channel_below_1pct": true
+    },
+    "pass_all": true
+  },
+  "pass_all": true,
+  "files": {
+    "emg.csv": {
+      "bytes": 2626702,
+      "sha256": "c7a6226f41420289c5f34f469444e44a5e3afd952e1843c3bdb13fad970e5206"
+    },
+    "events.csv": {
+      "bytes": 138,
+      "sha256": "8e2efbdab59c33878427cb8df4ecf7cedad345f44d8656b73d0e70972685347f"
+    },
+    "imu.csv": {
+      "bytes": 820385,
+      "sha256": "49e87fdea528128ec42051137d69111e87997c608dfef223458bc5158954f454"
+    },
+    "predictions.csv": {
+      "bytes": 62844,
+      "sha256": "a9b20c87342614e5c3678eed806b7f7eadddedc71b22ae7045044e66bf9ea0db"
+    },
+    "session.json": {
+      "bytes": 962,
+      "sha256": "d5ac0c5d3770501d8ebed27a8a2eaba83d3e5ce104a4686860cbb44d7e87f154"
+    }
+  },
+  "archive": {
+    "name": "one-channel.zip",
+    "bytes": 1029241,
+    "sha256": "fb5d317d11e8aade3efc3c86838acda676cf6e34882892a8952c17009660dfca"
+  }
+}

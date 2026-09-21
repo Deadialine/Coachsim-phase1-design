@@ -1,0 +1,39 @@
+{
+  "config_id": "coachsim-sim-v2.0",
+  "freeze_date": "2026-09-21",
+  "freeze_scope": "simulation_only",
+  "hardware_verified": false,
+  "physical_freeze_status": "pending_one_channel_and_four_channel_qualification",
+  "emg_hz": 2000,
+  "imu_hz": 100,
+  "channels": 4,
+  "adc_bits_assumed": 12,
+  "adc_unit": "adc_count",
+  "time_origin": "session_start",
+  "classes": [
+    "neutral_rest",
+    "wrist_flexion",
+    "wrist_extension",
+    "radial_deviation",
+    "ulnar_deviation",
+    "forearm_pronation",
+    "forearm_supination"
+  ],
+  "repetitions": 8,
+  "cue_seconds": 3,
+  "rest_seconds": 3,
+  "randomization_seed": 20260921,
+  "window_ms": 200,
+  "hop_ms": 50,
+  "transition_trim_ms": 500,
+  "confidence_min": 0.7,
+  "stability_ms": 250,
+  "stale_ms": 250,
+  "models_planned": [
+    "LDA",
+    "RBF-SVM"
+  ],
+  "models_implemented": [
+    "synthetic-overlay-1"
+  ]
+}

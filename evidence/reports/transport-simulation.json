@@ -1,0 +1,56 @@
+{
+  "nominal": {
+    "provenance": "synthetic",
+    "duration_seconds": 600,
+    "physical_transport_measured": false,
+    "streams": {
+      "emg": {
+        "packets_sent": 60000,
+        "packets_received": 60000,
+        "duplicates": 0,
+        "reordered": 0,
+        "packets_missing": 0,
+        "packet_loss_fraction": 0.0,
+        "sample_slots_missing": 0,
+        "pass_below_0_5pct": true
+      },
+      "imu": {
+        "packets_sent": 60000,
+        "packets_received": 60000,
+        "duplicates": 0,
+        "reordered": 0,
+        "packets_missing": 0,
+        "packet_loss_fraction": 0.0,
+        "sample_slots_missing": 0,
+        "pass_below_0_5pct": true
+      }
+    }
+  },
+  "negative_test": {
+    "provenance": "synthetic",
+    "duration_seconds": 600,
+    "physical_transport_measured": false,
+    "streams": {
+      "emg": {
+        "packets_sent": 60000,
+        "packets_received": 59400,
+        "duplicates": 0,
+        "reordered": 0,
+        "packets_missing": 600,
+        "packet_loss_fraction": 0.01,
+        "sample_slots_missing": 12000,
+        "pass_below_0_5pct": false
+      },
+      "imu": {
+        "packets_sent": 60000,
+        "packets_received": 59400,
+        "duplicates": 0,
+        "reordered": 0,
+        "packets_missing": 600,
+        "packet_loss_fraction": 0.01,
+        "sample_slots_missing": 600,
+        "pass_below_0_5pct": false
+      }
+    }
+  }
+}

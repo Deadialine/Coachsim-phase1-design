@@ -1,0 +1,22 @@
+{
+  "arduino_wiring.txt": {
+    "bytes": 1806,
+    "sha256": "290b67445447fc7436d19a7f361e28b11950aede103125e8e8541b91fd22d17a"
+  },
+  "ic_scanner.ino": {
+    "bytes": 549,
+    "sha256": "1c3ad5289ee9f601df82e3e8185a3e8accc36e717675a37434380cf4eab84e13"
+  },
+  "IMU_logger.ino": {
+    "bytes": 6947,
+    "sha256": "6ed2cdebbef0f1763deea4b8d94c06108f9cbfa80696d45080d9a91afdd5d80f"
+  },
+  "packet_loss.ino": {
+    "bytes": 7788,
+    "sha256": "64fdbab16a2250fa9cfae537d888854ac61dbd47f0614291a15589e8620ba2d1"
+  },
+  "SYSTEM_SPEC_v1_as_found.md": {
+    "bytes": 10966,
+    "sha256": "41bbd4391d962d16f2e128c7de62a04e446f60e35b52ec3aee94fe3951d819f9"
+  }
+}

@@ -1,0 +1,408 @@
+[
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/.gitignore",
+    "bytes": 310,
+    "sha256": "d373417ea2a8844e3b7a1515aab123e90fbeb4b7225144d55d243d9f6f04f73a"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/README.md",
+    "bytes": 3359,
+    "sha256": "70eafbc7a5fd466aa3213b5a7e1b2a41383cbe5d4e6fc5f4582efc58bdb509d1"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/assets/index-Bcoq9vTc.js",
+    "bytes": 572355,
+    "sha256": "04838ab03da69ca86020645e3f50a46875455b8cc8450ac7ed9d593177b69c0f"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/assets/index-CBT-gXRs.js",
+    "bytes": 575188,
+    "sha256": "e45f2498ef05c6f8c56f8ea1bebd253cf31f80338556f3904a5288046589cc71"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/assets/index-CN9UnHA1.css",
+    "bytes": 12220,
+    "sha256": "d6aab5e9b0a1e88348e243082d0faf36bc4b73a446569ba4b35e5f1ddccdf029"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/assets/index-DRCMf1Bl.css",
+    "bytes": 11638,
+    "sha256": "8a899c7a04ad855cf26f00829a1e6935c6ce943e5a8ecb35b29da668e8b4c6e9"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/assets/index-OWkc4stp.js",
+    "bytes": 577552,
+    "sha256": "41546eeada5d1e607263b8850a649aed35ab3ff77652d952ba7c218c6dceb18c"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/favicon.ico",
+    "bytes": 3870,
+    "sha256": "3d10f7da6c603178340081668c4ac5b3ae9743ca9a262ab0fcd312fbb9f48bdd"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/index.html",
+    "bytes": 565,
+    "sha256": "c7d8629291327f965cb17e4e355a482715014950e6f260ef1fabd25cebca13e0"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/logo192.png",
+    "bytes": 5347,
+    "sha256": "c386396ec70db3608075b5fbfaac4ab1ccaa86ba05a68ab393ec551eb66c3e00"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/logo512.png",
+    "bytes": 9664,
+    "sha256": "9ea4f4da7050c0cc408926f6a39c253624e9babb1d43c7977cd821445a60b461"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/manifest - Copy.json",
+    "bytes": 492,
+    "sha256": "50b3d8c3903af3f78d871b94557ab14f4e39ca192eaca3d2cfa863c867279a14"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/manifest.json",
+    "bytes": 492,
+    "sha256": "50b3d8c3903af3f78d871b94557ab14f4e39ca192eaca3d2cfa863c867279a14"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/postcss.config",
+    "bytes": 81,
+    "sha256": "e32657baf631d7c5f4dc67b4b2ee0ec8e7d5b3c41860e09cddce7c0377cd80bc"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/robots.txt",
+    "bytes": 67,
+    "sha256": "90d24bc3bf698ac1e173739502298ccca72adf1f564fab05f484b8c48d1cadd2"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/dist/tailwind.config",
+    "bytes": 206,
+    "sha256": "b2c2530c1124e40696a48dc1e77d9e161745dc8ff616ecac507751f1c8c0485a"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/index.html",
+    "bytes": 467,
+    "sha256": "88ffe3514c187f35d74d742b2245616b6cee5201e5b362d568844feef40e1ebe"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/package-lock.json",
+    "bytes": 102613,
+    "sha256": "93ae86f989d6a5b1a813308754d951e42b0e13716b96ef0aa53d50b5f2bef8a7"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/package.json",
+    "bytes": 413,
+    "sha256": "392408d29a61e2acd3a3ee5204f12ac5d4dcbf4f9214a3cb7e990df728eb9120"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/postcss.config",
+    "bytes": 81,
+    "sha256": "e32657baf631d7c5f4dc67b4b2ee0ec8e7d5b3c41860e09cddce7c0377cd80bc"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/postcss.config.js",
+    "bytes": 81,
+    "sha256": "e32657baf631d7c5f4dc67b4b2ee0ec8e7d5b3c41860e09cddce7c0377cd80bc"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/public/favicon.ico",
+    "bytes": 3870,
+    "sha256": "3d10f7da6c603178340081668c4ac5b3ae9743ca9a262ab0fcd312fbb9f48bdd"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/public/index.html",
+    "bytes": 576,
+    "sha256": "f9f51da555ca6bfc7c23b3be32dc4804336f30ba35c0a3d3d5aa466e368ae81c"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/public/logo192.png",
+    "bytes": 5347,
+    "sha256": "c386396ec70db3608075b5fbfaac4ab1ccaa86ba05a68ab393ec551eb66c3e00"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/public/logo512.png",
+    "bytes": 9664,
+    "sha256": "9ea4f4da7050c0cc408926f6a39c253624e9babb1d43c7977cd821445a60b461"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/public/manifest - Copy.json",
+    "bytes": 492,
+    "sha256": "50b3d8c3903af3f78d871b94557ab14f4e39ca192eaca3d2cfa863c867279a14"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/public/manifest.json",
+    "bytes": 492,
+    "sha256": "50b3d8c3903af3f78d871b94557ab14f4e39ca192eaca3d2cfa863c867279a14"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/public/postcss.config",
+    "bytes": 81,
+    "sha256": "e32657baf631d7c5f4dc67b4b2ee0ec8e7d5b3c41860e09cddce7c0377cd80bc"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/public/robots.txt",
+    "bytes": 67,
+    "sha256": "90d24bc3bf698ac1e173739502298ccca72adf1f564fab05f484b8c48d1cadd2"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/public/tailwind.config",
+    "bytes": 206,
+    "sha256": "b2c2530c1124e40696a48dc1e77d9e161745dc8ff616ecac507751f1c8c0485a"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/src/App.jsx",
+    "bytes": 38365,
+    "sha256": "297028ba9cfc2e42597dbbf3b3c0c6bd1f7142fc27a0e2368b3b85c12e54f246"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/src/Visualization3D.jsx",
+    "bytes": 13764,
+    "sha256": "19d9ad04c564449daaa4714604ba4a1788adfa880253c150d2796bf8412cfe76"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/src/index.css",
+    "bytes": 361,
+    "sha256": "dc9417fc39941dd7491b32e7fc023904c78913593a1cd4e81803b9cb6614a75e"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/src/main.jsx",
+    "bytes": 235,
+    "sha256": "a51e0f7e277f34e81badc2a31bdd4d5b40df497960266ac40d5cd27e81a36fac"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/src/three-lite.js",
+    "bytes": 4693,
+    "sha256": "236af45f9d0b0a315032922bf5c3c37a97e9450a72741ff0d9c64e8637b89e66"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/tailwind.config",
+    "bytes": 206,
+    "sha256": "b2c2530c1124e40696a48dc1e77d9e161745dc8ff616ecac507751f1c8c0485a"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/tailwind.config.js",
+    "bytes": 183,
+    "sha256": "11752ce31f41862c91e2e2e86191fdefc38cdbdaebefd7bac8ff78e76bedf9bb"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "coach_sim/vite.config.js",
+    "bytes": 187,
+    "sha256": "b193325569a7e2ea7cc906ff7bd8e30322ab7ff6ee794e8ad9a022b873f98abe"
+  },
+  {
+    "repository": "coachsim",
+    "baseline_commit": "4d22924e8815057d3edc5cc6da6d7191c47d51c8",
+    "path": "run.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": ".gitignore",
+    "bytes": 237,
+    "sha256": "057639b81d908f8c4bbb23a38267cdd26897c011077cefe04266fe574a87f7b4"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "Folder structure.txt",
+    "bytes": 198,
+    "sha256": "856b0529cda71e228b6c38d4acfbd97da7ee991c9fe7d1791e676cce0511c836"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "data_logs/Sampling + scheduler policy.txt",
+    "bytes": 2966,
+    "sha256": "ce0df3e005a1c1accb71a3766efafb1b9307cdbdef03784b890478b7d694b30c"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "data_logs/schema_v1.xlsx",
+    "bytes": 10122,
+    "sha256": "71ffb9ca71e69103806629e3b1925eb68e539c4a2bbcd193c5aaedca4ae4f43e"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "docs/SYSTEM_SPEC.md",
+    "bytes": 10966,
+    "sha256": "41bbd4391d962d16f2e128c7de62a04e446f60e35b52ec3aee94fe3951d819f9"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "docs/Sensor suite decision.docx",
+    "bytes": 13294,
+    "sha256": "06f5f61381d4446ae9ef2f753da3953c0de36a22a58461e4ababed21e53c6411"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "firmware/src/acq_task.cpp",
+    "bytes": 10124,
+    "sha256": "a1537a60205a4ba6919807bbea57709a4d5b023814137cb074cee43b31eabeb2"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "firmware/src/acq_task_mega.cpp",
+    "bytes": 6826,
+    "sha256": "ddee5cda0bb2501dec0000874fe594342368908214ceafd18efdf88de7fa5c67"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "firmware/src/acq_task_mega.h",
+    "bytes": 72,
+    "sha256": "4c4693acf518b3f6574eb30b5c5f705c74c03d5cfceabeb738bba1ec0559c2c6"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "firmware/src/acq_task_older_version.cpp",
+    "bytes": 9411,
+    "sha256": "29fc11eceb73afd12e60f020e42800fd154988e2f01a2803cdde24e8fa16d51b"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "firmware/src/drivers/ds1307.cs",
+    "bytes": 4,
+    "sha256": "b25d0fd93fbf5e6149c36b620b6da0f9a17b90fabd27c215a56311deecd6d7aa"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "firmware/src/drivers/mpu6050.cpp.cs",
+    "bytes": 4,
+    "sha256": "b25d0fd93fbf5e6149c36b620b6da0f9a17b90fabd27c215a56311deecd6d7aa"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "firmware/src/schema.h",
+    "bytes": 957,
+    "sha256": "c563900b000ea1ffbd19266c94fcded6528d3218c21fca7bad21042b3f161266"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "testing/acq_task.h",
+    "bytes": 51,
+    "sha256": "664a96584fa322c2c7a29fd9c1df5d605053e6ec391fe31eb94febcaa98f4957"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "testing/acq_task_mega.cpp",
+    "bytes": 9082,
+    "sha256": "65676ad8bd4d1fb1665a31a629a13bb3465bea5a626c19f54870c423899874ce"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "testing/schema.h",
+    "bytes": 957,
+    "sha256": "c563900b000ea1ffbd19266c94fcded6528d3218c21fca7bad21042b3f161266"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "testing/testing.ino",
+    "bytes": 85,
+    "sha256": "8b76a555cf866912e0729af4a9cc050109d2ec8de80065b7e7d0099997a7b35b"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "tools/parse_log.py",
+    "bytes": 4,
+    "sha256": "8a86c4eecf12446ff273afc03e1b3a09a911d0b7981db1af58cb45c439161295"
+  },
+  {
+    "repository": "Coachsim-phase1-design",
+    "baseline_commit": "4d67b82d2ef86ac4d0dfb34a78827a6f3d0cb4c5",
+    "path": "tools/plot_timing.py",
+    "bytes": 3,
+    "sha256": "45c9a6614fccd4f9592d8283a4f25bff84076fd43ee9f90eaa07746ebbed02ca"
+  }
+]
