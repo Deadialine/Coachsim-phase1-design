@@ -1,0 +1,53 @@
+Here’s the full documented wiring for the system you have now: Arduino Mega 2560 R3 + GY-521 (MPU-6050) + DS1307 RTC v03, all on the same I²C bus.
+
+Both sensor modules share the same I²C lines because I²C is a multi-device bus.
+
+The Arduino Mega 2560 provides the I²C pins on D20 (SDA) and D21 (SCL) (or the duplicate SDA/SCL header near AREF; electrically the same bus). The DS1307 RTC is connected to that bus and uses address 0x68. The MPU-6050 module is also an I²C device, but its default address is 0x68, which would conflict with the DS1307. To avoid the address collision, the MPU-6050 is configured to use 0x69 by tying its AD0 pin HIGH to 3.3V (not 5V).
+
+Power and ground (common rails)
+
+The Mega’s 5V pin is used to power both breakout boards:
+
+Mega 5V → GY-521 VCC
+
+Mega 5V → DS1307 VCC
+
+All grounds are tied together:
+
+Mega GND → GY-521 GND
+
+Mega GND → DS1307 GND
+
+This shared ground is required for reliable I²C signaling.
+
+I²C bus connections (shared between both modules)
+
+Both modules connect in parallel to the same SDA/SCL lines:
+
+Mega D20 (SDA) → GY-521 SDA
+
+Mega D21 (SCL) → GY-521 SCL
+
+Mega D20 (SDA) → DS1307 SDA
+
+Mega D21 (SCL) → DS1307 SCL
+
+So electrically, SDA is one common wire to both SDA pins, and SCL is one common wire to both SCL pins.
+
+Address configuration (required)
+
+To avoid I²C address conflict:
+
+GY-521 AD0 → 3.3V
+
+With that, the addresses on the bus are:
+
+DS1307 RTC: 0x68
+
+MPU-6050 (GY-521): 0x69
+
+Optional pins not used in your current setup
+
+GY-521 INT is not required unless you use interrupt/DMP features; otherwise it can remain unconnected.
+
+DS1307 SQW/OUT is optional (1 Hz / square wave output for hardware timing checks) and is not required for timestamping via I²C reads.

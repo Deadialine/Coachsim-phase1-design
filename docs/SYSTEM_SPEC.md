@@ -1,86 +1,47 @@
-Over a continuous 5-minute I²C stability test on the shared bus, the system consistently detected exactly two devices—  DS1307 at 0x68   (fixed address) and   MPU-6050 at 0x69  —across   300 scans  , with   zero intermittent dropouts   (Ever missing 0x68:   NO  , Ever missing 0x69:   NO  ), therefore the bus configuration and address conflict mitigation are verified as stable  the MPU-6050 address selection was achieved by tying   AD0 HIGH to 3.3V   while keeping both modules on the same SDA/SCL lines with a common ground.
+# CoachSim system specification v2
 
-| Item | Device / Module   | I²C Address | How address is achieved                                 | I²C Bus Connections              | Power / Ground                            | Verification evidence                 | Status |
-| ---- | ----------------- | ----------: | ------------------------------------------------------- | -------------------------------- | ----------------------------------------- | ------------------------------------- | ------ |
-| 1    | DS1307 RTC v03    |        0x68 | Fixed (non-configurable)                                | SDA + SCL shared on the same bus | VCC powered, GND common with MCU + MPU    | 300 scans / 5 min  never missing 0x68 | PASS   |
-| 2    | GY-521 (MPU-6050) |        0x69 |   AD0 tied HIGH to 3.3V   (forces 0x69 instead of 0x68) | SDA + SCL shared on the same bus | VCC powered, GND common with MCU + DS1307 | 300 scans / 5 min  never missing 0x69 | PASS   |
+Version 2.0, 2026-09-21. This specification defines the Fall 2026 sparse forearm sensing-to-feedback system and its implemented simulation profile. The existing concept simulator is retained; this work adds an experiment workflow and reproducible synthetic evidence. Physical hardware qualification remains outstanding.
 
+## Purpose and scope
 
+Recognize seven maintained wrist/forearm states across separate sessions and stream a posture estimate and confidence into CoachSim. The intended research contribution is sparse acquisition, reproducible cross-session evaluation and the integrated feedback path. No clinical efficacy claim is made.
 
+Included: raw EMG design, MPU-6050 IMU, DS1307 session reference, ESP32 migration requirements, synchronized multirate storage, cue/events, replay, confidence gating and LDA/RBF-SVM evaluation protocol. Deferred: strain, FSR, respiration, textile sleeve, haptics/actuation, clinical patients and deep-learning comparisons.
 
-  I²C electrical targets (measured, power OFF, Mega2560 bus on D20/D21): Effective pull-ups are to   5V   (not 3.3V). Measured resistance   SDA→5V = 10.08 kΩ  ,   SCL→5V = 10.1 kΩ    leakage/parallel paths to 3.3V are effectively open (  SDA→3.3V = 1.56 MΩ  ,   SCL→3.3V = 1.4 MΩ  ), indicating no meaningful 3.3V pull-ups present.   Bus speed validation:   at   100 kHz  , the shared bus with   DS1307 @ 0x68   and   MPU-6050 @ 0x69 (AD0 tied HIGH to 3.3V)   remained stable for   5 minutes / 300 scans   with   zero dropouts   (Ever missing 0x68: NO  Ever missing 0x69: NO) →   PASS  .
+## Architecture
 
-| Parameter                            |   SDA (D20) |   SCL (D21) | Notes                                           |
-| ------------------------------------ | ----------: | ----------: | ----------------------------------------------- |
-| Pull-up resistance to 5V (measured)  |    10.08 kΩ |     10.1 kΩ | Dominant pull-ups are to 5V rail                |
-| Pull-up / leakage to 3.3V (measured) |     1.56 MΩ |      1.4 MΩ | No meaningful 3.3V pull-ups present             |
-| I²C bus speed verified               |     100 kHz |     100 kHz | Wire.setClock(100000)                           |
-| Stability test duration / scans      | 5 min / 300 | 5 min / 300 | 1 scan/sec                                      |
-| Expected devices present every scan  |  0x68, 0x69 |  0x68, 0x69 | DS1307 fixed @0x68  MPU-6050 @0x69 via AD0=3.3V |
-| Result                               |        PASS |        PASS | Ever missing 0x68: NO  Ever missing 0x69: NO    |
+Physical target: MyoWare RAW outputs -> qualified ADC -> buffered ESP32 acquisition; MPU-6050 at 100 Hz -> same monotonic timeline; DS1307 -> session wall-clock metadata. A transport/storage layer preserves sample and packet indices. Host processing produces causal features, calibrated posture predictions and aligned timing events. CoachSim displays traces, target cues, predictions, uncertainty and recording status, and exports a session archive.
 
+Implemented profile: deterministic virtual EMG/IMU sources -> full-rate arrays/CSV -> strict schema validation -> quality monitor and synthetic prediction overlay -> time-indexed replay -> five-file ZIP. The Python bench generator independently writes/re-reads 60 s one-channel, 600 s four-channel and fault-injected files. The overlay uses generated labels; no trained LDA or SVM model is represented as implemented.
 
+## Timing and acquisition
 
-Timebase verification was executed on the ESP32 at   I²C = 100 kHz   using a frame loop that captures   monotonic `t_us` exactly once at frame start   via `esp_timer_get_time()` and forbids time calls inside drivers  across   5929 frames  , the monotonicity acceptance criteria were met with   0 non-increasing violations  , and the observed inter-frame delta remained strictly positive with   min_dt_us = 10104 µs   and   max_dt_us = 11228 µs  , confirming no backward jumps and no negative `dt` during the test (OVERALL:   PASS  ).
+EMG: target four channels at 2000 samples/s/channel (8000 channel values/s). IMU: 100 samples/s. Capture monotonic timestamps at acquisition boundaries, never at UI refresh. Preserve actual channel skew for multiplexed ADCs. Use scheduled absolute sample slots and advance counters for missed slots; do not accumulate read/print duration into the sample period. RTC: obtain session t0_unix and health, not sample timing. All CSV t_us values are relative to session start.
 
-| Test                            | Configuration                                                                                                                 |     Samples | Acceptance checks                                             | Result evidence                                                                        | Status |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------: | ------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------ |
-| 3.1 Monotonic timebase (`t_us`) | ESP32 `esp_timer_get_time()`, captured   once per frame at frame start    drivers do   not   call time  bus speed   100 kHz   | 5929 frames | `t_us` strictly increasing  no negative `dt` / backward jumps | Violations:   0    `min_dt_us`   10104 µs    `max_dt_us`   11228 µs    final:   PASS   | PASS   |
+Acquisition must not block on CSV formatting, wireless transmission or chart rendering. Use a bounded producer/consumer buffer, count overruns and mark invalid samples. A physical implementation must establish sustained throughput under the final power, ADC and transport configuration. No firmware is flashed or electrically qualified in this delivery.
 
+The inherited hardware record reports stable shared-bus addressing but a failed 100 Hz rate target (91.665 Hz, -8.33%). Preserve that failure in the audit; synthetic zero-jitter timing does not resolve it. Original Mega bus pull-ups were reported at 5 V; ESP32 migration requires measured voltage compatibility rather than a copied pinout.
 
+## Interfaces and configuration
 
-Frame schema v1 (CSV, SCHEMA_VERSION=1)
-Phase 1 logging format is CSV. Firmware MUST write the header line exactly once at file/session start, then append one line per frame. Column order is frozen and tools MUST parse by header match (exact string). t_us is captured once per frame at frame start using the monotonic timer (esp_timer_get_time() on ESP32) and MUST be strictly increasing. t0_unix is stored in <log>.meta.json (session start wall-clock) and is not repeated per frame.
-| Column (ordered) | Type     | Units | Meaning                                                        | Source            | Reserved policy                        |
-| ---------------- | -------- | ----: | -------------------------------------------------------------- | ----------------- | -------------------------------------- |
-| `schema_version` | `uint8`  |     — | Schema version tag (always `1`)                                | firmware constant | always populated                       |
-| `seq`            | `uint32` |     — | Frame counter starting at 0                                    | firmware          | always populated                       |
-| `t_us`           | `int64`  |    µs | Monotonic timestamp at frame start                             | esp_timer         | always populated                       |
-| `rtc_health`     | `uint8`  |     — | RTC health code (`0=OK,1=MISSING,2=READ_ERROR,3=INVALID_TIME`) | firmware          | always populated (even if RTC missing) |
-| `ax_g`           | `float`  |     g | MPU accel X                                                    | IMU               | if sensor absent/unread: `0`           |
-| `ay_g`           | `float`  |     g | MPU accel Y                                                    | IMU               | if sensor absent/unread: `0`           |
-| `az_g`           | `float`  |     g | MPU accel Z                                                    | IMU               | if sensor absent/unread: `0`           |
-| `gx_dps`         | `float`  | deg/s | MPU gyro X                                                     | IMU               | if sensor absent/unread: `0`           |
-| `gy_dps`         | `float`  | deg/s | MPU gyro Y                                                     | IMU               | if sensor absent/unread: `0`           |
-| `gz_dps`         | `float`  | deg/s | MPU gyro Z                                                     | IMU               | if sensor absent/unread: `0`           |
-| `emg_uV`         | `float`  |    µV | EMG channel                                                    | reserved          |   reserved  zero until implemented     |
-| `fsr_N`          | `float`  |     N | Force/pressure                                                 | reserved          |   reserved  zero until implemented     |
-| `strain_uE`      | `float`  |    µε | Strain                                                         | reserved          |   reserved  zero until implemented     |
-| `resp_raw`       | `float`  |     — | Respiration raw                                                | reserved          |   reserved  zero until implemented     |
-| `reserved0`      | `float`  |     — | Extra reserved channel                                         | reserved          |   reserved  zero until implemented     |
-| `reserved1`      | `float`  |     — | Extra reserved channel                                         | reserved          |   reserved  zero until implemented     |
+See [channel map](CHANNEL_MAP.md), [schema v2](SCHEMA_V2.md) and [v1 migration](MIGRATION_V1.md). The machine-readable simulation freeze is `config/study_config_v2.json`. The browser accepts four-channel v2 ZIPs and exact-header v1 CSVs. One-channel qualification archives are intentionally offline-only. The source original v1 system spec remains in `evidence/legacy/`.
 
+## CoachSim behavior
 
+Cue mode stores a deterministic randomized eight-block sequence, seven trials/block, 3 s cue and 3 s rest. It displays countdown, participant/session identifiers and actual synthetic timeline events. Raw EMG and IMU traces use independent rates; plotting does not downsample stored evidence. Replay follows a shared cursor with target and prediction labels. Export contains session.json, emg.csv, imu.csv, events.csv and predictions.csv.
 
+Prediction confidence below 0.70, quality failure, missing/stale input or age above 250 ms produces uncertain. A same-label accepted prediction must remain consistent for 250 ms before positive feedback. Raw ADC/sensor flags can veto even a confident imported prediction. No real device or model connection is claimed. The simulator can inject a clipping fault to exercise this path.
 
-Reserved fields policy (must not break tooling):
-All reserved channels are always present in the CSV header and always emitted for every frame, but may be zero-filled (or blank if explicitly allowed by tooling  default is zero) until the sensor/channel is implemented. Adding future sensors MUST NOT add/remove/reorder CSV columns  the firmware only starts populating existing reserved columns.
- Non-increasing t_us violations: 0
- FINAL RESULT OVERALL: PASS (header emitted + columns fixed + reserved present + monotonic t_us)
+## Acceptance and evidence policy
 
+Targets: >=90% valid trials; <1% EMG clipping per channel; <0.5% missing samples and separately measured dropped packets; <=1% per-stream rate error; median measured sample-to-display latency <=300 ms. Model macro-F1 >=0.80 within session is a planning target, not an exclusion criterion.
 
+Each result must carry provenance (synthetic, recorded, or legacy_unverified), commit/config IDs, raw artifact hashes and a reproducible calculation. Historical claims without original logs remain reported, not independently verified. Never reclassify synthetic evidence as physical acceptance.
 
+## Study and analysis contracts
 
+[Protocol](EXPERIMENT_PROTOCOL.md): four planned participants, two separate-day sessions, repeatable measured placement, central two-second held-state interval, explicit QC/exclusions. [Analysis plan](ANALYSIS_PLAN.md): 200 ms windows, 50 ms hop, training-only preprocessing, whole-trial grouped validation, session holdout, LDA primary and RBF-SVM comparison, EMG/IMU/fusion ablation. Future human collection requires the applicable institutional determination; the attached plan's lab-only wording is not proof of one.
 
+## Current verification
 
-
-Sampling + scheduler validation at the Phase 1 target (  100 Hz IMU  ,   1 Hz RTC health  ,   I²C = 100 kHz  ) showed that the loop timing was stable in terms of jitter but failed the achieved-rate requirement: over the 5-minute run the firmware wrote   27,500 frames   with   2,499 dropped frames   and   0 cumulative I²C errors  , with   final `rtc_health = OK`    the measured inter-frame timing was tight (  min_dt_us = 10,428 µs  ,   max_dt_us = 11,148 µs  , jitter span   720 µs   < 5 ms PASS), but the achieved rate was only   91.665 Hz   (  −8.33%   vs 100 Hz, outside the ±2% acceptance), therefore the current pacing/scheduler implementation is not meeting the 100 Hz rate target and must be corrected before Phase 1 can be considered complete.
-
-| Metric                    | Target / Acceptance                    |               Measured | Pass/Fail                            |
-| ------------------------- | -------------------------------------- | ---------------------: | ------------------------------------ |
-| I²C bus speed             | 100 kHz (Phase 1 baseline)             |             100,000 Hz | —                                    |
-| IMU target rate           | 100 Hz                                 |              91.665 Hz |   FAIL   (−8.33% vs ±2%)             |
-| Frames written (5 min)    | ~30,000 expected                       |                 27,500 | —                                    |
-| Dropped frames            | 0 preferred  tracked                   |                  2,499 |   FAIL   (indicates missed schedule) |
-| I²C errors (cumulative)   | 0 preferred                            |                      0 | PASS                                 |
-| RTC health check          | 1 Hz  health tracked                   |                     OK | PASS                                 |
-| Jitter bound              | (max_dt − min_dt) < 5 ms               |                 720 µs | PASS                                 |
-| `min_dt_us` / `max_dt_us` | Informational                          |     10,428 / 11,148 µs | PASS (positive dt)                   |
-| Overall                   | Rate within ±2% AND jitter span < 5 ms | Rate FAIL, Jitter PASS |   OVERALL: FAIL                      |
-
-
-
-
-
-
-
+The simulator core tests cover deterministic cue order, multirate chunk invariance, archive roundtrip, malformed inputs, confidence/quality/staleness/stability gates and v1 migration. The Python QC tests cover nominal/fault files, duplicates/trailing loss and refusal to overwrite evidence. See the D3 report and the app browser validation record for executed results. Original physical D1/D3 criteria remain itemized in the delivery index.

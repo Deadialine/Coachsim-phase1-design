@@ -1,0 +1,15 @@
+name: Verify synthetic acquisition evidence
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tools -p test_bench_v2.py
+      - run: python tools/transport_sim.py
+      - run: python tools/bench_v2.py --out evidence/generated/ci-smoke --seconds 10 --channels 4
