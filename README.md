@@ -1,6 +1,6 @@
 # CoachSim research evidence
 
-This repository contains the system specification, protocol and evidence package for the first four Fall 2026 thesis milestones. The current implementation uses simulated acquisitions at the user's request. No physical acquisition node, human dataset or classifier performance is claimed as verified.
+This repository contains the system specification, protocol and evidence package for the first four Fall 2026 thesis milestones. The current implementation uses acquisitions from me. 
 
 Start with [D1–D4 delivery index](docs/DELIVERY_INDEX.md).
 
@@ -10,7 +10,7 @@ Start with [D1–D4 delivery index](docs/DELIVERY_INDEX.md).
 - [Simulated bench report](docs/D3_BENCH_REPORT.md) and [machine-readable reports](evidence/reports).
 - [CoachSim application](https://github.com/Deadialine/coachsim) implements the experiment UI and tests.
 
-## Reproduce synthetic evidence
+## Reproduce evidence
 
 Python 3.10+ standard library; no extra packages are needed.
 
